@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>QR Generator - Mr StarkLord Studios</title>
+</head>
+<body>
+    <div class='a'></div>
+    <div class='b'></div>
+    <div class='c'></div>
+
+    <div class="container">
+        <div class="items">
+            <div>
+                <img src="LOGO_STARKLORD-removebg-preview.png" alt="">
+            </div>
+            <div class="options">
+                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-house"></i>
+                <i class="fa-solid fa-font"></i>
+                <i class="fa-solid fa-link"></i>
+                <i class="fa-regular fa-envelope"></i>
+                <i class="fa-solid fa-comment"></i>
+                <a href="https://www.youtube.com/@MrStarkLordStudio" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@MrStarkLordStudio" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="qr-header">
+            <h1>Text to QR Code</h1>
+            <input type="text" placeholder="Type your text or URL" id="qr-text">
+        </div>
+        
+        <div class="box">
+            <div class="details">   
+                <label for="sizes">Select Size:</label>
+                <select id="sizes">
+                        <option value="100">100x100</option>
+                        <option value="200">200x200</option>
+                        <option value="300">300x300</option>
+                        <option value="400">400x400</option>
+                        <option value="500">500x500</option>
+                        <option value="600">600x600</option>
+                        <option value="700">700x700</option>
+                        <option value="800">800x800</option>
+                        <option value="900">900x900</option>
+                        <option value="1000">1000x1000</option>
+                </select>
+            </div>
+            <div class="details">
+                <label for="color-picker">Select color:</label>
+                <input id="color-picker" type="color" name="color">
+            </div>
+    
+            <div class="qr-body"></div>
+    
+            <div class="qr-footer">
+                <a href="" id="generateBtn">Generate</a>
+                <a href="" id="downloadBtn" download="QR_Code.png"><i class="fa fa-download"></i>Download</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <ul>
+            <li><img src="LOGO_STARKLORD-removebg-preview.png" alt="LOGO"></li>
+            <li> &#169;2023</li>
+            <li>User Agreement</li>
+            <li>Privacy Policy</li>
+            <li>Community Guideline</li>
+            <li>Copyright Policy</li>
+            <li>Send Feedback</li>
+            <li><select name="Langauge">
+                <option value="English">Langauge</option>
+                <option value="Bengali">ভাষা</option>
+                <option value="HIndi">भाषा</option>
+                <option value="French">langue</option>
+              </select>
+            </li>
+        </ul>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</body>
+</html>
