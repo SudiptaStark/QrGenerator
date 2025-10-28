@@ -124,6 +124,10 @@ input{
     font-weight: 600;
     border-radius: 30px;
 }
+.qr-footer a.disabled {
+    pointer-events: none; /* Makes it unclickable */
+    opacity: 0.5;         /* Makes it look faded */
+}
 .qr-footer i,i{
     padding: 9px;
     display: inline;
