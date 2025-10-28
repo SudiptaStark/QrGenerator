@@ -3,6 +3,12 @@ const sizes = document.getElementById('sizes');
 const generateBtn = document.getElementById('generateBtn');
 const downloadBtn = document.getElementById('downloadBtn');
 const qrContainer = document.querySelector('.qr-body');
+let colorPicker = document.querySelector("#color-picker");
+let color = "#000";
+
+colorPicker.addEventListener('change',(e)=>{
+    color = e.target.value;
+});
 
 let size = sizes.value;
 
@@ -55,6 +61,6 @@ function generateQRCode() {
         height: size,
         width: size,
         colorLight: "#fff",
-        colorDark: "#000",
+        colorDark: color
     });
 }
