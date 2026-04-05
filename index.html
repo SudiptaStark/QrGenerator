@@ -1,90 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <title>QR Generator - Mr StarkLord Studios</title>
-</head>
-<body>
-    <div class='a'></div>
-    <div class='b'></div>
-    <div class='c'></div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    <div class="container">
-        <div class="items">
-            <div>
-                <img src="LOGO_STARKLORD-removebg-preview.png" alt="">
-            </div>
-            <div class="options">
-                <i class="fa-solid fa-bars"></i>
-                <i class="fa-solid fa-house"></i>
-                <i class="fa-solid fa-font"></i>
-                <i class="fa-solid fa-link"></i>
-                <i class="fa-regular fa-envelope"></i>
-                <i class="fa-solid fa-comment"></i>
-                <a href="https://www.youtube.com/@MrStarkLordStudio" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.youtube.com/@MrStarkLordStudio" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-            </div>
-        </div>
-        <div class="qr-header">
-            <h1>Text to QR Code</h1>
-            <input type="text" placeholder="Type your text or URL" id="qr-text">
-        </div>
-        
-        <div class="box">
-            <div class="details">   
-                <label for="sizes">Select Size:</label>
-                <select id="sizes">
-                        <option value="100">100x100</option>
-                        <option value="200">200x200</option>
-                        <option value="300">300x300</option>
-                        <option value="400">400x400</option>
-                        <option value="500">500x500</option>
-                        <option value="600">600x600</option>
-                        <option value="700">700x700</option>
-                        <option value="800">800x800</option>
-                        <option value="900">900x900</option>
-                        <option value="1000">1000x1000</option>
-                </select>
-            </div>
-            <div class="details">
-                <label for="color-picker">Select color:</label>
-                <input id="color-picker" type="color" name="color">
-            </div>
-    
+    <link rel="stylesheet" href="style.css">
+    <title>QR Generator v2 - Mr StarkLord Studios</title>
+    <!-- 
+      Added a helper class for accessibility.
+      This hides the <legend> visually but keeps it for screen readers.
+    -->
+    <style>
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+      The main content block. 
+      The <body> is now the flex container that centers this.
+    -->
+    <main class="main-content">
+        <!-- The header for the generator, now a <header> -->
+        <header class="qr-header">
+            <h1>QR Code Generator</h1>
+
+            <!-- NEW: QR Code Type as Tabs -->
+            <!-- <nav class="qr-type-tabs" role="tablist">
+                Radio buttons for accessibility and state management 
+                <input type="radio" id="type-text" name="qr-type-tab" value="text" role="tab" aria-controls="text-inputs" aria-selected="true" checked>
+                <label for="type-text">Text / URL</label>
+                
+                <input type="radio" id="type-wifi" name="qr-type-tab" value="wifi" role="tab" aria-controls="wifi-inputs" aria-selected="false">
+                <label for="type-wifi">Wi-Fi</label>
+                
+                <input type="radio" id="type-vcard" name="qr-type-tab" value="vcard" role="tab" aria-controls="vcard-inputs" aria-selected="false">
+                <label for="type-vcard">vCard</label>
+            </nav> -->
+
+            <label for="qr-type" class="main-label">QR Code Type:</label>
+            <select id="qr-type" class="main-input">
+                <option value="text">Text / URL</option>
+                <option value="wifi">Wi-Fi Network</option>
+                <option value="vcard">vCard (Contact)</option>
+            </select>
+        </header>
+
+        <!-- The main app body -->
+        <section class="box">
+            <!-- Input groups, now in a <section> -->
+            <section id="input-container">
+                <!-- Text/URL Inputs -->
+                <div id="text-inputs" class="input-group" role="tabpanel" aria-labelledby="type-text">
+                    <label for="qr-text">Text or URL:</label>
+                    <input type="text" placeholder="Type your text or URL" id="qr-text">
+                </div>
+
+                <!-- WiFi Inputs -->
+                <div id="wifi-inputs" class="input-group hidden" role="tabpanel" aria-labelledby="type-wifi">
+                    <label for="wifi-ssid">Network Name (SSID):</label>
+                    <input type="text" id="wifi-ssid" placeholder="MyNetworkName">
+                    <label for="wifi-pass">Password:</label>
+                    <input type="password" id="wifi-pass" placeholder="MyPassword123">
+                    <label for="wifi-type">Encryption:</label>
+                    <select id="wifi-type">
+                        <option value="WPA">WPA/WPA2</option>
+                        <option value="WEP">WEP</option>
+                        <option value="nopass">None</option>
+                    </select>
+                </div>
+
+                <!-- vCard Inputs -->
+                <div id="vcard-inputs" class="input-group hidden" role="tabpanel" aria-labelledby="type-vcard">
+                    <label for="vcard-name">Full Name:</label>
+                    <input type="text" id="vcard-name" placeholder="John Doe">
+                    <label for="vcard-phone">Phone:</label>
+                    <input type="tel" id="vcard-phone" placeholder="+11234567890">
+                    <label for="vcard-email">Email:</label>
+                    <input type="email" id="vcard-email" placeholder="john.doe@example.com">
+                </div>
+            </section>
+
+            <!-- Customization Details, grouped in a <fieldset> -->
+            <fieldset class="customization-group">
+                <legend class="visually-hidden">Customize QR Code</legend>
+
+                <div class="details-grid">
+                    <div class="details">
+                        <label for="sizes">Select Size:</label>
+                        <select id="sizes">
+                            <option value="100">100x100</option>
+                            <option value="200">200x200</option>
+                            <option value="300" selected>300x300</option>
+                            <option value="400">400x400</option>
+                            <option value="500">500x500</option>
+                        </select>
+                    </div>
+                    <div class="details">
+                        <label for="color-picker">Select color:</label>
+                        <input id="color-picker" type="color" name="color" value="#000000">
+                    </div>
+                </div>
+
+                <!-- Visual Contrast Warning -->
+                <div id="contrast-warning" class="warning-message hidden"></div>
+
+                <!-- Logo Upload -->
+                <div class="details">
+                    <label for="logo-upload" class="file-label">Add Logo (optional):</label>
+                    <input type="file" id="logo-upload" accept="image/png, image/jpeg">
+                    <button id="clear-logo" class="clear-btn hidden"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </fieldset>
+
+            <!-- This is where the QR code (on a canvas) will be generated -->
             <div class="qr-body"></div>
-    
+
+            <!-- Download button (now the only button) -->
             <div class="qr-footer">
-                <a href="" id="generateBtn">Generate</a>
-                <a href="" id="downloadBtn" download="QR_Code.png"><i class="fa fa-download"></i>Download</a>
+                <a href="#" id="downloadBtn" download="QR_Code.png"><i class="fa fa-download"></i>Download</a>
             </div>
-        </div>
-    </div>
-    
+        </section>
+    </main>
+
+    <!-- Page footer, now a <footer> element -->
     <footer>
         <ul>
             <li><img src="LOGO_STARKLORD-removebg-preview.png" alt="LOGO"></li>
-            <li> &#169;2023</li>
+            <li> &#169;2025</li>
             <li>User Agreement</li>
             <li>Privacy Policy</li>
             <li>Community Guideline</li>
             <li>Copyright Policy</li>
             <li>Send Feedback</li>
-            <li><select name="Langauge">
-                <option value="English">Langauge</option>
-                <option value="Bengali">ভাষা</option>
-                <option value="HIndi">भाषा</option>
-                <option value="French">langue</option>
-              </select>
-            </li>
         </ul>
     </footer>
 
+    <!-- qrcode.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Our new, powerful script.js -->
     <script src="script.js"></script>
 </body>
 
